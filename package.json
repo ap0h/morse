@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node index.js"
   },
+  "repository": {
+    "url": "https://github.com/ap0h/morse.git"
+  },
   "author": "Nemanja Stankovic",
   "license": "MIT",
   "dependencies": {

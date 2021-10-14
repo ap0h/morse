@@ -1,32 +1,33 @@
 const { sendResult, getToken } = require('./client')
 const { decode } = require('jsonwebtoken')
+
 const MORSE_MAPPING = {
-    A: '.-',
-    B: '-...',
-    C: '-.-.',
-    D: '-..',
-    E: '.',
-    F: '..-.',
-    G: '--.',
-    H: '....',
-    I: '..',
-    J: '.---',
-    K: '-.-',
-    L: '.-..',
-    M: '--',
-    N: '-.',
-    O: '---',
-    P: '.--.',
-    Q: '--.-',
-    R: '.-.',
-    S: '...',
-    T: '-',
-    U: '..-',
-    V: '...-',
-    W: '.--',
-    X: '-..-',
-    Y: '-.--',
-    Z: '--..',
+    a: '.-',
+    b: '-...',
+    c: '-.-.',
+    d: '-..',
+    e: '.',
+    f: '..-.',
+    g: '--.',
+    h: '....',
+    i: '..',
+    j: '.---',
+    k: '-.-',
+    l: '.-..',
+    m: '--',
+    n: '-.',
+    o: '---',
+    p: '.--.',
+    q: '--.-',
+    r: '.-.',
+    s: '...',
+    t: '-',
+    u: '..-',
+    v: '...-',
+    w: '.--',
+    x: '-..-',
+    y: '-.--',
+    z: '--..',
     1: '.----',
     2: '..---',
     3: '...--',
@@ -38,18 +39,25 @@ const MORSE_MAPPING = {
     9: '----.',
     0: '-----',
     ':': '---...',
-    ' ': ' ',
+    ' ': '/',
 }
 
 const main = async () => {
     const token = await getToken()
-    console.log('🚀 -> file: index.js -> line 46 -> main -> token', token)
     const { exp } = decode(token.value)
     let text = `Vega IT Omega : ${exp}`;
-    console.log('🚀 -> file: index.js -> line 49 -> main -> text', text)
-    const r1 = text.replace(/./gm, ([x]) => `${MORSE_MAPPING[x.toUpperCase()]} `).trim();
+    const result = text.replace(/./gm, ([x]) => `${MORSE_MAPPING[x.toLowerCase()]} `).trim();
+    console.log('🚀 -> file: index.js -> line 50 -> main -> result', result)
 
-    console.log(r1)
+    const message = await sendResult({
+        firstName: 'Nemanja',
+        lastName: 'Stankovic',
+        email: 'neca.rxrx@gmail.com',
+        githubUrl: 'https://github.com/ap0h/morse.git',
+        result
+    })
+    console.log('🚀 -> file: index.js -> line 59 -> main -> message', message)
 
 }
-main();
+
+main()

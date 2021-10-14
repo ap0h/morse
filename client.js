@@ -33,22 +33,19 @@ const auth = async () => {
  *         result: string,
  *         githubUrl: string
  *      }}data 
- * @returns {{message: string}}
+ * @returns {Promise<{message: string}>}
  */
 const sendResult = async (data) => {
-    if (!token) {
-        token = await auth()
-    }
     try {
-        const result = await api.post('/api/v1/result',
+        const { data: message } = await api.post('/api/v1/result',
             data, {
             headers: {
-                Authorization: `Bearer ${token.value}`,
+                Authorization: `Bearer ${(await getToken()).value}`,
                 'Content-Type': 'application/json',
+                'Accept': '*/*'
             }
         });
-
-        return result.data
+        return message
     } catch (error) {
         console.error(error);
     }
