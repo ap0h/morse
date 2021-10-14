@@ -1,0 +1,15 @@
+{
+  "name": "morse_challange",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Nemanja Stankovic",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.23.0",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
